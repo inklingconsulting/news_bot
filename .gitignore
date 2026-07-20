@@ -1,0 +1,8 @@
+.env
+briefs/
+ratings.jsonl
+__pycache__/
+*.pyc
+.venv/
+venv/
+.claude/settings.local.json

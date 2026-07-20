@@ -1,0 +1,47 @@
+# The categories your daily brief covers. Edit freely — add, remove, or reorder.
+# Each category gets AT LEAST `min_stories` story in every brief.
+#  name     : shown as the section header
+#  emoji    : decorates the header
+#  min_stories: minimum stories to include (default 1)
+#  guidance : tells the curator what belongs here and what "good" looks like
+categories:
+  - name: Technology
+    emoji: "💻"
+    min_stories: 1
+    guidance: >-
+      The most important story in the technology sector today: AI, major product
+      launches, big-company moves (Apple, Google, Microsoft, OpenAI, Nvidia, etc.),
+      or a genuinely significant shift. Favor substance over gadget rumors.
+
+  - name: Big Business
+    emoji: "💼"
+    min_stories: 1
+    guidance: >-
+      The biggest business / markets / economy story: major corporate moves, deals,
+      earnings that matter, Fed / macro news, or a market-moving event. Explain the
+      "so what" for a smart non-expert.
+
+  - name: World & Science
+    emoji: "🌍"
+    min_stories: 1
+    guidance: >-
+      One major world-news item (geopolitics, a significant global event) AND, when
+      possible, one notable science or discovery item. This is the "well-informed
+      citizen" category.
+
+  - name: Something Funny
+    emoji: "😂"
+    min_stories: 1
+    guidance: >-
+      One genuinely lighthearted, offbeat, or amusing real news story from the last
+      day or two. Not mean-spirited, not tragedy played for laughs — actually funny
+      or delightfully weird.
+
+  - name: Worth Sharing
+    emoji: "🧠"
+    min_stories: 1
+    guidance: >-
+      One fascinating fact or short piece of knowledge worth dropping in conversation
+      — history, science, geography, geology, language, culture. It does NOT need to
+      be from today's news; it needs to be true, verifiable, and genuinely interesting.
+      Cite a reputable source. This is what makes the reader more interesting at dinner.
