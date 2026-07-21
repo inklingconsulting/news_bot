@@ -1,0 +1,17 @@
+[Unit]
+Description=Daily News Bot (Telegram)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=botrunner
+WorkingDirectory=/opt/bots/news_bot
+ExecStart=/opt/bots/news_bot/.venv/bin/python bot.py
+Restart=always
+RestartSec=10
+# Keep memory modest on an e2-micro; the bot is I/O-bound.
+MemoryMax=350M
+
+[Install]
+WantedBy=multi-user.target
