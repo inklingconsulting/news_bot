@@ -1,47 +1,59 @@
 # The categories your daily brief covers. Edit freely — add, remove, or reorder.
-# Each category gets AT LEAST `min_stories` story in every brief.
+# Each category gets AT LEAST `min_stories` stories in every brief.
 #  name     : shown as the section header
 #  emoji    : decorates the header
 #  min_stories: minimum stories to include (default 1)
 #  guidance : tells the curator what belongs here and what "good" looks like
 categories:
+  - name: Local — Tampa Bay
+    emoji: "📍"
+    min_stories: 2
+    guidance: >-
+      Local news from the Tampa Bay area, especially Pinellas County (St. Petersburg,
+      Clearwater, Largo, Pinellas Park) and the city of Tampa. Think: local government
+      and development, notable crime or public-safety news, weather and storm impacts,
+      big community events, and local sports (Rays, Bucs, Lightning, Rowdies) when
+      there's real news. Prefer genuinely local, recent items over statewide Florida
+      filler. Reputable local sources (Tampa Bay Times, ABC Action News, Fox 13,
+      Bay News 9, Creative Loafing) preferred.
+
   - name: Technology
     emoji: "💻"
-    min_stories: 1
+    min_stories: 2
     guidance: >-
-      The most important story in the technology sector today: AI, major product
+      The most important stories in the technology sector today: AI, major product
       launches, big-company moves (Apple, Google, Microsoft, OpenAI, Nvidia, etc.),
-      or a genuinely significant shift. Favor substance over gadget rumors.
+      or genuinely significant shifts. Favor substance over gadget rumors.
 
   - name: Big Business
     emoji: "💼"
-    min_stories: 1
+    min_stories: 2
     guidance: >-
-      The biggest business / markets / economy story: major corporate moves, deals,
-      earnings that matter, Fed / macro news, or a market-moving event. Explain the
+      The biggest business / markets / economy stories: major corporate moves, deals,
+      earnings that matter, Fed / macro news, or market-moving events. Explain the
       "so what" for a smart non-expert.
 
   - name: World & Science
     emoji: "🌍"
-    min_stories: 1
+    min_stories: 2
     guidance: >-
-      One major world-news item (geopolitics, a significant global event) AND, when
-      possible, one notable science or discovery item. This is the "well-informed
-      citizen" category.
+      Major world-news items (geopolitics, significant global events) plus, when
+      possible, a science or discovery item. This is the "well-informed citizen"
+      category — aim for one strong world story and one science story.
 
   - name: Something Funny
     emoji: "😂"
-    min_stories: 1
+    min_stories: 2
     guidance: >-
-      One genuinely lighthearted, offbeat, or amusing real news story from the last
+      Genuinely lighthearted, offbeat, or amusing real news stories from the last
       day or two. Not mean-spirited, not tragedy played for laughs — actually funny
       or delightfully weird.
 
   - name: Worth Sharing
     emoji: "🧠"
-    min_stories: 1
+    min_stories: 2
     guidance: >-
-      One fascinating fact or short piece of knowledge worth dropping in conversation
-      — history, science, geography, geology, language, culture. It does NOT need to
-      be from today's news; it needs to be true, verifiable, and genuinely interesting.
+      Fascinating facts or short pieces of knowledge worth dropping in conversation
+      — history, science, geography, geology, language, culture. These do NOT need to
+      be from today's news; they need to be true, verifiable, and genuinely interesting.
       Cite a reputable source. This is what makes the reader more interesting at dinner.

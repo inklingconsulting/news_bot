@@ -19,7 +19,8 @@ _RECENT_LIMIT = 60
 def record_rating(story: dict, vote: str) -> None:
     """Append a single rating to ratings.jsonl.
 
-    `vote` is "up" or "down". `story` is the archived story dict (see curator)."""
+    `vote` is "up" (relevant), "mid" (in between), or "down" (meh).
+    `story` is the archived story dict (see curator)."""
     entry = {
         "ts": datetime.now(timezone.utc).isoformat(),
         "vote": vote,
@@ -57,9 +58,10 @@ def build_profile() -> str:
         return ""
 
     liked = [r for r in ratings if r["vote"] == "up"]
+    somewhat = [r for r in ratings if r["vote"] == "mid"]
     disliked = [r for r in ratings if r["vote"] == "down"]
 
-    # Per-category signal: how often the reader liked each category.
+    # Per-category signal: tally each vote type per category.
     by_cat: dict[str, list[str]] = {}
     for r in ratings:
         by_cat.setdefault(r["category"], []).append(r["vote"])
@@ -70,6 +72,10 @@ def build_profile() -> str:
         lines.append("\nStories they marked RELEVANT (give them more like these):")
         for r in liked[-15:]:
             lines.append(f'  - [{r["category"]}] {r["headline"]}')
+    if somewhat:
+        lines.append("\nStories they marked IN BETWEEN (mildly interesting — okay, but not a priority):")
+        for r in somewhat[-10:]:
+            lines.append(f'  - [{r["category"]}] {r["headline"]}')
     if disliked:
         lines.append("\nStories they marked NOT relevant (avoid this kind):")
         for r in disliked[-15:]:
@@ -77,13 +83,15 @@ def build_profile() -> str:
 
     cat_summary = []
     for cat, votes in by_cat.items():
-        ups = votes.count("up")
-        cat_summary.append(f"{cat}: {ups}/{len(votes)} liked")
+        cat_summary.append(
+            f'{cat}: {votes.count("up")}👍 {votes.count("mid")}🤔 {votes.count("down")}👎'
+        )
     if cat_summary:
-        lines.append("\nBy category (liked / total rated): " + "; ".join(cat_summary))
+        lines.append("\nBy category (relevant / in between / meh): " + "; ".join(cat_summary))
 
     lines.append(
-        "\nUse this to prioritize and frame stories, but always keep every category "
-        "covered with at least its minimum number of stories."
+        "\nUse this to prioritize and frame stories: lean toward what they mark relevant, "
+        "treat in-between topics as acceptable filler, and avoid what they mark meh. "
+        "Always keep every category covered with at least its minimum number of stories."
     )
     return "\n".join(lines)

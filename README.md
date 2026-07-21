@@ -1,24 +1,27 @@
 # 📱 Daily News Bot
 
 A personal news bot that sends you a categorized daily brief on Telegram, lets you
-rate each story 👍/👎, and learns your taste over time — so you stay informed and
-interesting.
+rate each story 👍 / 🤔 / 👎, and learns your taste over time — so you stay informed
+and interesting.
 
 Each brief covers (edit in `categories.yaml`):
 
-- 💻 **Technology** — the day's biggest tech-sector story
+- 📍 **Local — Tampa Bay** — Pinellas County & Tampa local news
+- 💻 **Technology** — the day's biggest tech-sector stories
 - 💼 **Big Business** — markets, deals, economy
-- 🌍 **World & Science** — a major world event + a science item
-- 😂 **Something Funny** — a genuinely amusing story
-- 🧠 **Worth Sharing** — a fascinating fact worth dropping on friends
+- 🌍 **World & Science** — major world events + a science item
+- 😂 **Something Funny** — genuinely amusing stories
+- 🧠 **Worth Sharing** — fascinating facts worth dropping on friends
 
-...with at least one story in every category.
+...with at least two stories in every category.
 
 ## How it works
 
 An always-on Python program on your PC uses **Claude (Anthropic API) with web
 search** to research and summarize the news, sends it to you via a **Telegram bot**,
-and records your 👍/👎 ratings to tune future briefs.
+and records your ratings to tune future briefs. Each story gets three buttons —
+**👍 Relevant**, **🤔 In between**, **👎 Meh** — and recent ratings steer the next
+day's edition.
 
 ## Setup (about 10 minutes)
 

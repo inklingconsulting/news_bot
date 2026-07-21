@@ -40,12 +40,21 @@ _NO_PREVIEW = LinkPreviewOptions(is_disabled=True)
 # --------------------------------------------------------------------------- #
 # Rendering
 # --------------------------------------------------------------------------- #
+# Vote value -> (button label, confirmation label). "mid" is the in-between option.
+_VOTES = {
+    "up":   ("👍 Relevant", "👍 Marked relevant"),
+    "mid":  ("🤔 In between", "🤔 Noted — somewhat relevant"),
+    "down": ("👎 Meh", "👎 Noted — less like this"),
+}
+
+
 def _story_markup(story_id: str) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("👍 Relevant", callback_data=f"v|up|{story_id}"),
-                InlineKeyboardButton("👎 Meh", callback_data=f"v|down|{story_id}"),
+                InlineKeyboardButton(_VOTES["up"][0], callback_data=f"v|up|{story_id}"),
+                InlineKeyboardButton(_VOTES["mid"][0], callback_data=f"v|mid|{story_id}"),
+                InlineKeyboardButton(_VOTES["down"][0], callback_data=f"v|down|{story_id}"),
             ]
         ]
     )
@@ -97,7 +106,7 @@ async def deliver(bot, chat_id, brief: dict) -> None:
 
     await bot.send_message(
         chat_id=chat_id,
-        text="Rate the stories 👍 / 👎 — I use it to tune tomorrow's brief.",
+        text="Rate the stories 👍 / 🤔 / 👎 — I use it to tune tomorrow's brief.",
     )
 
 
@@ -150,6 +159,9 @@ async def on_rating(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     except ValueError:
         await query.answer("Unrecognized button.")
         return
+    if vote not in _VOTES:
+        await query.answer("Unrecognized vote.")
+        return
 
     story = curator.find_story(story_id)
     if story is None:
@@ -157,7 +169,7 @@ async def on_rating(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         story = {"id": story_id, "category": "", "headline": "", "source_url": ""}
     preferences.record_rating(story, vote)
 
-    label = "👍 Marked relevant" if vote == "up" else "👎 Noted — less like this"
+    label = _VOTES[vote][1]
     await query.answer(label)
     # Replace the buttons with a confirmation so it's clear the vote registered.
     await query.edit_message_reply_markup(

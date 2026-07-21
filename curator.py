@@ -43,8 +43,10 @@ def _build_prompt(profile: str) -> str:
 
     cat_specs = []
     for c in cats:
+        n = c["min_stories"]
+        noun = "story" if n == 1 else "stories"
         cat_specs.append(
-            f'- "{c["name"]}" (at least {c["min_stories"]} story): {c["guidance"].strip()}'
+            f'- "{c["name"]}" (at least {n} {noun}): {c["guidance"].strip()}'
         )
     cat_block = "\n".join(cat_specs)
     names = ", ".join(f'"{c["name"]}"' for c in cats)
