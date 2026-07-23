@@ -32,6 +32,10 @@ import preferences
 logging.basicConfig(
     format="%(asctime)s %(levelname)s %(name)s: %(message)s", level=logging.INFO
 )
+# httpx logs every request URL at INFO — which includes the bot token in the
+# Telegram API path. Quiet these so secrets never land in the logs.
+logging.getLogger("httpx").setLevel(logging.WARNING)
+logging.getLogger("telegram").setLevel(logging.WARNING)
 log = logging.getLogger("news_bot")
 
 _NO_PREVIEW = LinkPreviewOptions(is_disabled=True)
